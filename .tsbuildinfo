@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/categoryselector.tsx","./src/components/filmlist.tsx","./src/components/header.tsx","./src/pages/homepage.tsx","./src/pages/login.tsx","./src/pages/success.tsx","./src/types/movie.ts"],"version":"5.7.2"}

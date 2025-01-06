@@ -4,8 +4,47 @@
 
 @font-face {
   font-family: 'PixelFont';
-  src: url('path/to/pixel-font.woff2') format('woff2'),
-       url('path/to/pixel-font.woff') format('woff');
+  src: url('/fonts/pixel-font.woff2') format('woff2'),
+       url('/fonts/pixel-font.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+body {
+  font-family: 'Signika', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #fff; /* Beyaz zemin */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Çapraz kırmızı çizgiler ve beyaz çizgiler için arka plan */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(45deg, #ff4c4c 0, #ff4c4c 1cm, white 0, white 1.5cm), /* Daha açık kırmızı */
+    repeating-linear-gradient(-45deg, #ff4c4c 0, #ff4c4c 1cm, white 0, white 1.5cm);
+  pointer-events: none; /* Arka planda kalmasını sağlar, içerik üzerine tıklamaya engel olmaz */
+  z-index: -1; /* Arka planda olmasını sağlar */
+}
+
+/* Sağ alt köşeye PNG resmi ekleme */
+body::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;  /* Alt kısımdan 20px yukarıda */
+  right: 20px;   /* Sağ kısımdan 20px içeride */
+  width: 400px;  /* Resmin genişliği */
+  height: 400px; /* Resmin yüksekliği */
+  background-image: url('/background.png'); /* Resmin yolu */
+  background-size: contain; /* Resmin boyutunu, kutuya sığacak şekilde ayarla */
+  background-repeat: no-repeat; /* Resmin tekrar etmesini engelle */
+  z-index: -1; /* Diğer içeriklerin üstünde yer almasını sağlar */
 }

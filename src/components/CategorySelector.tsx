@@ -34,7 +34,7 @@ export default function CategorySelector({ selectedCategories, onCategoryChange 
   ];
 
   return (
-    <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8">
+    <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 relative">
       <h2 className="text-2xl text-white mb-6 text-center font-medium">Favori Kategorilerini seç</h2>
       <div className="grid grid-cols-2 gap-x-8 gap-y-3">
         {categories.map((category) => (
@@ -52,11 +52,14 @@ export default function CategorySelector({ selectedCategories, onCategoryChange 
           </div>
         ))}
       </div>
-      <div className="mt-8 flex justify-center">
-        <button className="bg-black/40 text-white px-12 py-3 rounded-xl text-xl hover:bg-black/50 transition-colors">
-          Film Öner
-        </button>
+
+      <div className="absolute top-4 right-4 bg-white/20 text-white p-2 rounded-full cursor-pointer hover:bg-white/30">
+        <span className="text-lg">ℹ️</span>
+        <div className="hidden group-hover:block absolute right-0 bg-black text-white text-sm p-3 rounded-md shadow-lg w-56">
+          Kategorilerinizi seçtikten sonra "Film Öner" butonuna basarak önerilerinizi alabilirsiniz.
+        </div>
       </div>
     </div>
   );
 }
+

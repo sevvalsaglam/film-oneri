@@ -1,10 +1,34 @@
+import styled from "styled-components";
+
+// Header container with matching width as FormWrapper
+const HeaderContainer = styled.div`
+  text-align: center;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 1.25rem;
+  margin-bottom: 1.5rem;
+  width: 100%; /* Ensures the width matches the form's width */
+  max-width: 32rem; /* Ensures it doesn't exceed the max width of the form */
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const Title = styled.h1`
+  font-size: 3rem;
+  font-weight: bold;
+  color: black; /* Set the text color to black */
+  margin-bottom: 0.5rem;
+  font-family: 'Silkscreen', sans-serif; /* Applying the Silkscreen font */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Adding a 50% shadow effect */
+`;
+
 export default function Header() {
   return (
-    <div className="text-center p-6 bg-black/40 backdrop-blur-sm rounded-2xl mb-6">
-      <h1 className="text-5xl font-bold text-white mb-2 font-pixel">MOVIE</h1>
-      <h1 className="text-5xl font-bold text-white mb-2 font-pixel">RECOMMENDATION</h1>
-      <h1 className="text-5xl font-bold text-white font-pixel">MACHINE 🍿🎰</h1>
-    </div>
+    <HeaderContainer>
+      <Title>MOVIE</Title>
+      <Title>RECOMMENDATION</Title>
+      <Title>MACHINE 🍿🎰</Title>
+    </HeaderContainer>
   );
 }
-

@@ -1,52 +1,107 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import styled from "styled-components";
 
-export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+// Container component for the full screen view
+const Container = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-image: url('/movie-posters-bg.jpg');
+  background-size: cover;
+  background-position: center;
+`;
+
+// Wrapper for form content
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: 32rem;
+`;
+
+// Form container with styling
+const FormWrapper = styled.div`
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%; /* Ensures the form stays within bounds */
+`;
+
+// Input field style
+const Input = styled.input`
+  width: 90%;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.125rem;
+  placeholder-color: rgba(255, 255, 255, 0.7);
+  outline: none;
+  margin-bottom: 1rem; /* Ensures there's space between inputs */
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+`;
+
+// Submit button style
+const SubmitButton = styled.button`
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 1.125rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+`;
+
+const Login: React.FC = () => {
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
+  // Form submission handler
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     navigate("/home");
   };
 
   return (
-    <div 
-      className="min-h-screen flex flex-col items-center justify-center p-6"
-      style={{
-        backgroundImage: "url('/movie-posters-bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="w-full max-w-lg">
+    <Container>
+      <Wrapper>
         <Header />
-        <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 space-y-6">
-          <input
+        <FormWrapper>
+          <Input
             type="text"
-            placeholder="username"
+            placeholder="Username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full p-4 rounded-xl bg-white/20 text-white text-xl placeholder-white/70 outline-none"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
           />
-          <input
+          <Input
             type="password"
-            placeholder="password"
+            placeholder="Password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-4 rounded-xl bg-white/20 text-white text-xl placeholder-white/70 outline-none"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           />
-          <button
-            onClick={handleSubmit}
-            className="w-full p-4 bg-black/40 text-white rounded-xl text-xl hover:bg-black/50 transition-colors"
-          >
+          <SubmitButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleSubmit(e)}>
             Giriş Yap
-          </button>
-        </div>
-      </div>
-    </div>
+          </SubmitButton>
+        </FormWrapper>
+      </Wrapper>
+    </Container>
   );
-}
+};
 
+export default Login;
