@@ -13,6 +13,8 @@ const Container = styled.div`
   backdrop-filter: blur(10px);
   border-radius: 1.25rem;
   padding: 2rem;
+  width: 100%; /* Ensures the width matches the form's width */
+  max-width: 32rem; /* Ensures it doesn't exceed the max width of the form */
 `;
 
 const Title = styled.h2`

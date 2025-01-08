@@ -30,13 +30,15 @@ const FormWrapper = styled.div`
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1.5rem;
   width: 100%; /* Ensures the form stays within bounds */
 `;
 
 // Input field style
 const Input = styled.input`
-  width: 90%;
+  width: 100%;
   padding: 1rem;
   border-radius: 1rem;
   background-color: rgba(255, 255, 255, 0.2);

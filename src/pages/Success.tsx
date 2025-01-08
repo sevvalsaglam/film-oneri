@@ -3,20 +3,16 @@ import Header from "../components/Header";
 import styled from "styled-components";
 
 const Container = styled.div`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  background-image: url('/movie-posters-bg.jpg');
-  background-size: cover;
-  background-position: center;
+  padding: 2rem;
+
 `;
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 32rem;
 `;
 
 const SuccessBox = styled.div`

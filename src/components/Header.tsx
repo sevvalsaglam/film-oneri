@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-// Header container with matching width as FormWrapper
 const HeaderContainer = styled.div`
   text-align: center;
-  padding: 1.5rem;
+  padding: 2rem;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   border-radius: 1.25rem;
@@ -28,7 +27,7 @@ export default function Header() {
     <HeaderContainer>
       <Title>MOVIE</Title>
       <Title>RECOMMENDATION</Title>
-      <Title>MACHINE 🍿🎰</Title>
+      <Title>MACHINE 📽️🎰</Title>
     </HeaderContainer>
   );
 }

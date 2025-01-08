@@ -1,4 +1,39 @@
-import { MovieCategory } from "../types/movie";
+import { MovieCategory, ALL_CATEGORIES } from "../types/movie";
+import styled from "styled-components";
+
+const CheckBoxWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+`;
+
+const CheckBoxLabel = styled.label<{ selected: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  padding: 0.75rem 1rem;
+  background-color: ${(props) => (props.selected ? 'rgba(169, 169, 169, 0.5)' : '#f0f0f0')};
+  border-radius: 1rem;
+  border: 2px solid ${(props) => (props.selected ? '#343a40' : '#ccc')};
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin-bottom: 15px;
+
+  &:hover {
+    background-color: rgba(169, 169, 169, 0.3);
+  }
+`;
+
+const CheckBoxInput = styled.input`
+  display: none;
+
+  &:checked + ${CheckBoxLabel} {
+    background-color: rgba(169, 169, 169, 0.5);
+    border-color: #343a40;
+  }
+`;
 
 interface CategorySelectorProps {
   selectedCategories: MovieCategory[];
@@ -6,60 +41,27 @@ interface CategorySelectorProps {
 }
 
 export default function CategorySelector({ selectedCategories, onCategoryChange }: CategorySelectorProps) {
-  const categories: { label: string; value: MovieCategory }[] = [
-    { label: "Action", value: "ACTION" },
-    { label: "Adventure", value: "ADVENTURE" },
-    { label: "Animation", value: "ANIMATION" },
-    { label: "Comedy", value: "COMEDY" },
-    { label: "Drama", value: "DRAMA" },
-    { label: "Fantasy", value: "FANTASY" },
-    { label: "Horror", value: "HORROR" },
-    { label: "Mystery", value: "MYSTERY" },
-    { label: "Romance", value: "ROMANCE" },
-    { label: "Science Fiction", value: "SCIENCE_FICTION" },
-    { label: "Thriller", value: "THRILLER" },
-    { label: "Crime", value: "CRIME" },
-    { label: "Documentary", value: "DOCUMENTARY" },
-    { label: "Family", value: "FAMILY" },
-    { label: "History", value: "HISTORY" },
-    { label: "Musical", value: "MUSICAL" },
-    { label: "War", value: "WAR" },
-    { label: "Western", value: "WESTERN" },
-    { label: "Sports", value: "SPORTS" },
-    { label: "Biographical", value: "BIOGRAPHICAL" },
-    { label: "Superhero", value: "SUPERHERO" },
-    { label: "Coming-of-Age", value: "COMING_OF_AGE" },
-    { label: "Psychological", value: "PSYCHOLOGICAL" },
-    { label: "Cult", value: "CULT" },
-  ];
-
   return (
-    <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 relative">
-      <h2 className="text-2xl text-white mb-6 text-center font-medium">Favori Kategorilerini seç</h2>
-      <div className="grid grid-cols-2 gap-x-8 gap-y-3">
-        {categories.map((category) => (
-          <div key={category.value} className="flex items-center">
-            <input
+    <div>
+      <h2>Kategoriler</h2>
+      <CheckBoxWrapper>
+        {ALL_CATEGORIES.map(({ label, value }) => (
+          <div key={value}>
+            <CheckBoxInput
               type="checkbox"
-              id={category.value}
-              checked={selectedCategories.includes(category.value)}
-              onChange={() => onCategoryChange(category.value)}
-              className="w-5 h-5 mr-3 rounded border-gray-400"
+              id={value}
+              onChange={() => onCategoryChange(value)}
+              checked={selectedCategories.includes(value)}
             />
-            <label htmlFor={category.value} className="text-white text-lg">
-              {category.label}
-            </label>
+            <CheckBoxLabel
+              htmlFor={value}
+              selected={selectedCategories.includes(value)}
+            >
+              {label}
+            </CheckBoxLabel>
           </div>
         ))}
-      </div>
-
-      <div className="absolute top-4 right-4 bg-white/20 text-white p-2 rounded-full cursor-pointer hover:bg-white/30">
-        <span className="text-lg">ℹ️</span>
-        <div className="hidden group-hover:block absolute right-0 bg-black text-white text-sm p-3 rounded-md shadow-lg w-56">
-          Kategorilerinizi seçtikten sonra "Film Öner" butonuna basarak önerilerinizi alabilirsiniz.
-        </div>
-      </div>
+      </CheckBoxWrapper>
     </div>
   );
 }
-
