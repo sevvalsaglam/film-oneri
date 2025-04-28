@@ -1,0 +1,33 @@
+.emoji-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Kullanıcı etkileşimlerini engeller, sadece görsel olarak görünür */
+  }
+  
+  .emoji {
+    position: absolute;
+    font-size: 3rem;
+    animation: emojiAnimation 10s infinite;
+  }
+  
+  @keyframes emojiAnimation {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(50px, 50px);
+    }
+    50% {
+      transform: translate(-50px, -50px);
+    }
+    75% {
+      transform: translate(100px, -100px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  
